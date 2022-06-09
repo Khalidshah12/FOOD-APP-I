@@ -1,0 +1,66 @@
+#page {
+    width: 80%;
+    margin: auto;
+    font-size: 22px;
+    margin-top: 10px;
+    font-weight: bold;
+    /* border: 1px solid black; */
+}
+
+#welcome{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid black; */
+}
+
+#welcome>img{
+    /* border: 1px solid red; */
+    height: 200px;
+}
+
+#welcome>h1{
+    color: yellow;
+}
+
+#searchDiv {
+    /* border: 1px solid red; */
+    width: 80%;
+    margin: auto;
+}
+
+#search {
+    height: 40px;
+    width: 45%;
+    margin: auto;
+    display: block;
+    padding-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    outline-color: violet;
+}
+
+#search::placeholder {
+    margin-right: 10px;
+}
+
+#food{
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
+
+/* .foodList{
+
+} */
+
+.foodList>img{
+    width: 100%;
+}

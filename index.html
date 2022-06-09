@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./styles/navbar.css">
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+
+<body>
+    <div id="navbar">
+
+    </div>
+    <div id="page">Home</div>
+
+    <div id="welcome">
+        <img src="https://www.themealdb.com/images/meal-icon.png" alt="">
+        <h1>Welcome to our Online Restaurant</h1>
+        <img src="https://www.themealdb.com/images/meal-icon.png" alt="">
+
+    </div>
+
+    <div id="searchDiv">
+        <input placeholder="Search for a Food..." type="text" id="search">
+    </div>
+
+    <div id="food">
+
+    </div>
+</body>
+
+</html>
+<script src="./scripts/index.js"></script>
+
+<script type="module">
+    // import data from navbar.js for appeding navbar on index.html page
+    import navbar from "../components/navbar.js"
+    const nav = document.querySelector('#navbar');
+    nav.innerHTML = navbar()
+
+    // import fetch from fetchData.js for fetching the data
+    import { getData, display } from '../components/fetchData.js';
+
+    const inputAddevent = document.querySelector('#search');
+    inputAddevent.addEventListener("input", searchData)
+
+    let id;
+    async function searchData() {
+        if (id) {
+            clearTimeout(id)
+        }
+        id = setTimeout(async function () {
+            const search = document.querySelector('#search').value;
+            let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`
+            let data = await getData(url)
+            const food = document.querySelector('#food');
+            display(data, food)
+            console.log(search)
+        }, 1000)
+    }
+
+</script>
