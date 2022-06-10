@@ -6,6 +6,7 @@
 
 body {
     background-color: #2d2013;
+    position: relative;
 }
 
 #navbar {
@@ -15,6 +16,8 @@ body {
     height: 70px;
     display: flex;
     justify-content: space-between;
+    position: sticky;
+    top: 0px;
 }
 
 #logo{
