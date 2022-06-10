@@ -1,12 +1,4 @@
 let getData = async (url) => {
-    // const search = document.querySelector('#search').value;
-    // let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`
-
-    // fetch(url).then(function (res) {
-    //     return res.json()
-    // }).then(function (res) {
-    //    return res
-    // })
 
     let res = await fetch(url)
     let data = await res.json()
@@ -36,10 +28,19 @@ let display = (data, food) => {
         catSpan.innerText = elem.strCategory
 
         const category = document.createElement('p');
+        category.setAttribute("class","category")
         category.innerText = "Category: "
         category.append(catSpan)
 
-        foodList.append(img,title,category)
+        const areaSpan = document.createElement('span');
+        areaSpan.innerText = elem.strArea
+        
+        const area = document.createElement('p');
+        area.setAttribute("class","area")
+        area.innerText = "Dish of: "
+        area.append(areaSpan)
+
+        foodList.append(img,title,category,area)
         food.append(foodList)
     })
 }

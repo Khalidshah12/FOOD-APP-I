@@ -1,42 +1,27 @@
-// // let searchData = async () => {
-// //     const search = document.querySelector('#search').value;
-// //     let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`
+// import data from navbar.js for appeding navbar on index.html page
+import navbar from "../components/navbar.js"
+const nav = document.querySelector('#navbar');
+nav.innerHTML = navbar()
 
-// //     let res = await fetch(url)
-// //     let data = await res.json()
-// //     // console.log(data.meals)
-// //     display(data.meals)
-// // }
+// import fetch from fetchData.js for fetching the data
+import { getData, display } from '../components/fetchData.js';
 
-// let display = (data) => {
-//     const food = document.querySelector('#food');
-//     food.innerHTML = null
-//     data.forEach(function(elem){
-       
-//         const foodList = document.createElement('div');
-//         foodList.setAttribute("class","foodList")
+//  adding Event listener "input" to input
+const inputAddevent = document.querySelector('#search');
+inputAddevent.addEventListener("input", searchData)
 
-//         const img = document.createElement('img');
-//         img.src = elem.strMealThumb
-
-//         const titleSpan = document.createElement('span');
-//         titleSpan.innerText = elem.strMeal
-
-//         const title = document.createElement('p');
-//         title.setAttribute("class","title")
-//         title.innerText = "Food Name: "
-//         title.append(titleSpan)
-
-//         const catSpan = document.createElement('span');
-//         catSpan.setAttribute("class","catSpan")
-//         catSpan.innerText = elem.strCategory
-
-//         const category = document.createElement('p');
-//         category.innerText = "Category: "
-//         category.append(catSpan)
-
-//         foodList.append(img,title,category)
-//         food.append(foodList)
-//     })
-// }
-
+let id;
+async function searchData() {
+    if (id) {
+        clearTimeout(id)
+    }
+    // added debouncing of 1s
+    id = setTimeout(async function () {
+        const search = document.querySelector('#search').value;
+        let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`
+        let data = await getData(url)
+        const food = document.querySelector('#food');
+        display(data, food)
+        console.log(search)
+    }, 1000)
+}
